@@ -23,20 +23,33 @@ function computer_choice(){
 function human_choice(){
 
     let answer = prompt('Choose: rock - paper - scissors')
+    return answer
 
 }
 
 function play_round(compChoice, humChoice){
 
-    if((humChoice == 'rock' && compChoice == 'scissors') || (humChoice == 'paper' && compChoice == 'rock') || (humChoice == 'scissors' && compChoice == 'paper')){
+    if(humChoice == compChoice){
+        console.log('Empate')
+    } else if(humChoice == 'rock' && compChoice == 'scissors'){
         human_score = human_score + 1 
-    } else {
-        machine_score = machine_score + 1 
+        console.log('Punto para el humano')
+    } else if((humChoice == 'paper' && compChoice == 'rock')){
+        human_score = human_score + 1
+        console.log('Punto para el humano')
+    } else if(humChoice == 'scissors' && compChoice == 'paper'){
+        human_score = human_score + 1
+        console.log('Punto para el humano')
+    } else{
+        machine_score = machine_score +1 
+        console.log('Punto para la maquina')
     }
     
+    console.log('Computer choice: '+ compChoice)
+    console.log('Human choice: '+ humChoice)
+    console.log('-')
 
 }
-// hay un problema con esta funcion me parece que hace que el score siempre caiga en la clausula else, fijarse qu es lo que esta pasando 
 
 function main_game_loop(){
     
@@ -50,9 +63,15 @@ function main_game_loop(){
         }else{
             play_round(computer_choice(), human_choice())
 
-            console.log('Machine score' + machine_score)
-            console.log('Human score' + human_score)
+            console.log('Machine score ' + machine_score)
+            console.log('Human score ' + human_score)
             console.log('-')
+
+            if(machine_score == 3){
+                console.log('Gano la maquina')
+            } else if(human_score == 3){
+                console.log('Gano el humano')
+            }
         }
 
     }
